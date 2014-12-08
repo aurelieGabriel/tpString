@@ -37,7 +37,20 @@ const int String::MAX_SIZE = 50;
 // ===========================================================================
 String::String(void)
 {
+  capacity = 20;
+  length = 4;
+  data = new char[capacity];
+  data[0]= 't';
+  data[1]='e';
+  data[2]='s';
+  data[3]='t';
+}
 
+String::String(const String &s)
+{
+  data = s.data;
+  length = s.length;
+  capacity = s.capacity;
 }
 
 // ===========================================================================
