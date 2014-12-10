@@ -86,15 +86,6 @@ String::~String(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
-size_t String::length() const
-{
-  return length_;
-}
-
-size_t String::size() const
-{
-  return length_;
-}
 
 bool String::Empty(void)                     // test if the string is empty
 {
@@ -108,17 +99,6 @@ bool String::Empty(void)                     // test if the string is empty
 	}
 }
 
-
-const  char* String::c_str(void) const   
- {
-   return data;
- }
-
-
-size_t String::capacity(void)             // return the string capacity
-{
-	return capacity_;
-}
 
 void String::reserve(size_t n)         // increase the string capacity if n is greater than the current capacity
 {
@@ -136,6 +116,8 @@ void String::reserve(size_t n)         // increase the string capacity if n is g
 	}
 }
 
+
+
 // ===========================================================================
 //                                Protected Methods
 // ===========================================================================
@@ -143,3 +125,23 @@ void String::reserve(size_t n)         // increase the string capacity if n is g
 // ===========================================================================
 //                               Non inline accessors
 // ===========================================================================
+
+size_t String::length() const
+{
+  return length_;
+}
+
+size_t String::size() const
+{
+  return length_;
+}
+
+const  char* String::c_str(void) const   
+ {
+   return data;
+ }
+
+size_t String::capacity(void)             // return the string capacity
+{
+	return capacity_;
+}

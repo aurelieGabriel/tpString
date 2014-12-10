@@ -76,6 +76,7 @@ class String
 	bool Empty(void); 
 	size_t capacity(void);
 	void reserve(size_t n);
+	void clear();
 
     // =======================================================================
     //                             Public Attributes
