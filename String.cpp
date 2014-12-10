@@ -30,7 +30,7 @@
 // ===========================================================================
 //                         Definition of static attributes
 // ===========================================================================
-const int String::MAX_SIZE = 50;
+const size_t String::MAX_SIZE = 50;
 
 // ===========================================================================
 //                                  Constructors
@@ -86,11 +86,50 @@ String::~String(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
+size_t String::length() const
+{
+  return length_;
+}
 
-const  char* String::c_str(void) const
+bool String::Empty(void)                     // test if the string is empty
+{
+	if(length_==0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
+const  char* String::c_str(void) const   
  {
    return data;
  }
+
+
+size_t String::capacity(void)             // return the string capacity
+{
+	return capacity_;
+}
+
+void String::reserve(size_t n)         // increase the string capacity if n is greater than the current capacity
+{
+	int i;
+	if(capacity_<n)
+	{
+		char* str = new char[n];
+		for(i=0;i<length_;i++)
+		{
+			str[i]=data[i];
+		}
+		delete data;
+		data=str;
+		capacity_=n;		
+	}
+}
 
 // ===========================================================================
 //                                Protected Methods

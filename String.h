@@ -58,7 +58,9 @@ class String
     //                            Accessors: getters
     // =======================================================================
     
-   const  char* c_str(void) const; 
+    const  char* c_str(void) const; 
+    size_t length() const;
+
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
@@ -70,7 +72,9 @@ class String
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-
+	bool Empty(void); 
+	size_t capacity(void);
+	void reserve(size_t n);
 
     // =======================================================================
     //                             Public Attributes
@@ -86,9 +90,9 @@ class String
     //                             Protected Attributes
     // =======================================================================
     char * data;
-    int length_;
-    int capacity_;
-    static const int MAX_SIZE;
+    size_t length_;
+    size_t capacity_;
+    static const size_t MAX_SIZE;
 };
 
 
