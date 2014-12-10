@@ -86,6 +86,11 @@ String::~String(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
+size_t String::length() const
+{
+  return length_;
+}
+
 bool String::Empty(void)                     // test if the string is empty
 {
 	if(length_==0)
@@ -97,6 +102,7 @@ bool String::Empty(void)                     // test if the string is empty
 		return false;
 	}
 }
+
 
 size_t String::capacity(void)             // return the string capacity
 {
