@@ -91,7 +91,23 @@ size_t String::length() const
   return length_;
 }
 
+bool String::Empty(void)                     // test if the string is empty
+{
+	if(length_==0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
+
+size_t String::capacity(void)             // return the string capacity
+{
+	return capacity_;
+}
 // ===========================================================================
 //                                Protected Methods
 // ===========================================================================
