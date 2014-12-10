@@ -58,7 +58,17 @@ int main(int argc, char* argv[])
   String s3 = String(s1.data);
   printf("%d %c\n",s3.length_,s3.data[0]);
 
-
+//--------------------------------------------------------------------------
+// Test of the c_str methode
+//--------------------------------------------------------------------------
+  const char * c1;
+  c1 =  s1.c_str();
+  int j;
+  for(j=0; j<4; j++)
+    {
+    printf("%c ", c1[j]);
+    }
+  printf("\n");
 
   return 0;
 }
