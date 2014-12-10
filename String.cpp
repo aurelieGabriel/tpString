@@ -37,9 +37,9 @@ const int String::MAX_SIZE = 50;
 // ===========================================================================
 String::String(void)
 {
-  capacity = 20;
-  length = 4;
-  data = new char[capacity];
+  capacity_ = 20;
+  length_ = 4;
+  data = new char[capacity_];
   data[0]= 't';
   data[1]='e';
   data[2]='s';
@@ -48,9 +48,15 @@ String::String(void)
 
 String::String(const String &s)
 {
-  data = s.data;
-  length = s.length;
-  capacity = s.capacity;
+  
+  data = new char[s.capacity_];
+  int i;
+  for(i=0; i<s.length_; i++)
+    {
+      data[i]= s.data[i];
+    }
+  length_ = s.length_;
+  capacity_ = s.capacity_;
 }
 
 // ===========================================================================

@@ -84,8 +84,8 @@ class String
     //                             Protected Attributes
     // =======================================================================
     char * data;
-    int length;
-    int capacity;
+    int length_;
+    int capacity_;
     static const int MAX_SIZE;
 };
 
