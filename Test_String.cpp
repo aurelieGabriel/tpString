@@ -50,8 +50,15 @@ int main(int argc, char* argv[])
     {
     printf("%c ", s2.data[i]);
     }
+  printf("\n");
 
-  printf("Hello World !\n");
+//--------------------------------------------------------------------------
+// Test of the constructor with c_String
+//--------------------------------------------------------------------------
+  String s3 = String(s1.data);
+  printf("%d %c\n",s3.length_,s3.data[0]);
+
+
 
   return 0;
 }

@@ -59,6 +59,23 @@ String::String(const String &s)
   capacity_ = s.capacity_;
 }
 
+String::String(const char * s)
+{
+  capacity_ = 20;
+  int i=0,l=0;
+  while(s[i] != NULL)
+    {
+      l++;
+      i++;
+    }
+  data = new char[capacity_];
+  for(i=0;i<l;i++)
+    {
+      data[i] = s[i];
+    }
+  length_ = l;
+}
+
 // ===========================================================================
 //                                  Destructor
 // ===========================================================================
