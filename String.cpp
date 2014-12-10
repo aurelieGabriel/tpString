@@ -91,6 +91,11 @@ size_t String::length() const
   return length_;
 }
 
+size_t String::size() const
+{
+  return length_;
+}
+
 bool String::Empty(void)                     // test if the string is empty
 {
 	if(length_==0)

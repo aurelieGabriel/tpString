@@ -60,6 +60,7 @@ class String
     
     const  char* c_str(void) const; 
     size_t length() const;
+    size_t size() const;
 
     // =======================================================================
     //                            Accessors: setters
