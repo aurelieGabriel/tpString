@@ -108,6 +108,12 @@ size_t String::capacity(void)             // return the string capacity
 {
 	return capacity_;
 }
+
+const size_t String::max_size(void)
+{
+  return MAX_SIZE;
+}
+
 // ===========================================================================
 //                                Protected Methods
 // ===========================================================================

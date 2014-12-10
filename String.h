@@ -58,6 +58,7 @@ class String
     //                            Accessors: getters
     // =======================================================================
     size_t length() const;
+    static const size_t max_size(void);
 
     // =======================================================================
     //                            Accessors: setters
