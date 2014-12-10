@@ -46,11 +46,12 @@ String::String(const String &s)
 {
   
   data = new char[s.capacity_];
-  int i;
+  /*int i;
   for(i=0; i<s.length_; i++)
     {
       data[i]= s.data[i];
-    }
+      }*/
+  memcpy(data,s.data,s.length_);
   length_ = s.length_;
   capacity_ = s.capacity_;
 }
@@ -59,16 +60,18 @@ String::String(const char * s)
 {
   capacity_ = 20;
   int i=0,l=0;
-  while(s[i] != NULL)
+  while(s[i] != '\0')
     {
       l++;
       i++;
     }
   data = new char[capacity_];
-  for(i=0;i<l;i++)
+  /* for(i=0;i<l;i++)
     {
       data[i] = s[i];
     }
+  */
+  memcpy(data,s,l);
   length_ = l;
 }
 
@@ -103,10 +106,12 @@ void String::reserve(size_t n)         // increase the string capacity if n is g
 	if(capacity_<n)
 	{
 		char* str = new char[capacity_+n];
-		for(i=0;i<length_;i++)
+		/*for(i=0;i<length_;i++)
 		{
 			str[i]=data[i];
 		}
+		*/
+		memcpy(str,data,length_);
 		delete data;
 		data=str;
 		capacity_+=n;		
