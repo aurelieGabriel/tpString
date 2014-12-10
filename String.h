@@ -79,6 +79,7 @@ class String
 	size_t capacity(void);
 	void reserve(size_t n);
 	void clear();
+	void resize(int n, char c);
 
     // =======================================================================
     //                             Public Attributes

@@ -117,9 +117,25 @@ void String::reserve(size_t n)         // increase the string capacity if n is g
 }
 
 
-const size_t String::max_size(void)
+void String::resize(int n, char c)
 {
-  return MAX_SIZE;
+  int i;
+  if(n<length_)
+    {
+      for(i=n;i<length_;i++)
+	{
+	  data[i]=NULL;
+	}
+    }
+    
+    else if(n>length_)
+    {
+      for(i=length_;i<n;i++)
+	{
+	  data[i]='c';
+	}
+    }
+  length_ = n;
 }
 
 
@@ -150,4 +166,10 @@ const  char* String::c_str(void) const
 size_t String::capacity(void)             // return the string capacity
 {
 	return capacity_;
+}
+
+
+const size_t String::max_size(void)
+{
+  return MAX_SIZE;
 }

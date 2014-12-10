@@ -107,6 +107,28 @@ int main(int argc, char* argv[])
 // test of the max_size method
 //--------------------------------------------------------------------------
 printf("%d\n",String::max_size());
+
+
+//---------------------------------------------------------------------------
+// Test of the resize method
+//---------------------------------------------------------------------------
+// with n<length
+  s1.resize(2,'c');
+  printf("%d\n",s1.length());
+  for(i=0; i<s1.length(); i++)
+    {
+      printf("%c", s1.data[i]);
+    }
+  printf("\n");
+
+// with n>length
+  s1.resize(10,'c');
+  printf("%d\n",s1.length());
+  for(i=0; i<s1.length(); i++)
+    {
+    printf("%c", s1.data[i]);
+    }
+  printf("\n");
  
   return 0;
 }
