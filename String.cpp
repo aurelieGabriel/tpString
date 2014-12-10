@@ -102,6 +102,22 @@ size_t String::capacity(void)             // return the string capacity
 {
 	return capacity_;
 }
+
+void String::reserve(size_t n)         // increase the string capacity if n is greater than the current capacity
+{
+	int i;
+	if(capacity_<n)
+	{
+		char* str = new char[n];
+		for(i=0;i<length_;i++)
+		{
+			str[i]=data[i];
+		}
+		delete data;
+		data=str;
+		capacity_=n;		
+	}
+}
 // ===========================================================================
 //                                Protected Methods
 // ===========================================================================
