@@ -80,6 +80,7 @@ class String
 	void reserve(size_t n);
 	void clear();
 	void resize(int n, char c);
+	const char& at(int p);
 
     // =======================================================================
     //                             Public Attributes
