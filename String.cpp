@@ -46,11 +46,6 @@ String::String(const String &s)
 {
   
   data = new char[s.capacity_];
-  /*int i;
-  for(i=0; i<s.length_; i++)
-    {
-      data[i]= s.data[i];
-      }*/
   memcpy(data,s.data,s.length_);
   length_ = s.length_;
   capacity_ = s.capacity_;
@@ -66,11 +61,6 @@ String::String(const char * s)
       i++;
     }
   data = new char[capacity_];
-  /* for(i=0;i<l;i++)
-    {
-      data[i] = s[i];
-    }
-  */
   memcpy(data,s,l);
   length_ = l;
 }
@@ -135,11 +125,6 @@ void String::reserve(size_t n)         // increase the string capacity if n is g
 	if(capacity_<n)
 	{
 		char* str = new char[capacity_+n];
-		/*for(i=0;i<length_;i++)
-		{
-			str[i]=data[i];
-		}
-		*/
 		memcpy(str,data,length_);
 		delete data;
 		data=str;
@@ -172,7 +157,7 @@ void String::resize(int n, char c)           //resize the string
     {
       for(i=n;i<length_;i++)
 	{
-	  data[i]=NULL;
+	  data[i]='\0';
 	}
     }
     
@@ -185,6 +170,7 @@ void String::resize(int n, char c)           //resize the string
     }
   length_ = n;
 }
+
 //--------------------------------------------------------------------------
 String String::operator +(const String& str)   // concatenates 2 strings
 {
@@ -199,6 +185,21 @@ String String::operator +(const String& str)   // concatenates 2 strings
 	}
 	return *this;
 }
+
+
+//----------------------------------------------------------------------------
+//Clear the data of the String, data becomes Null
+//----------------------------------------------------------------------------
+void String::clear()
+{
+  data = "\0";
+  length_= 0;
+}
+const char& String::at(int p)
+{
+  return data[p];
+}
+
 
 // ===========================================================================
 //                                Protected Methods
