@@ -82,11 +82,7 @@ String::~String(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
-size_t String::length() const
-{
-  return length_;
-}
-//--------------------------------------------------------------------------
+
 bool String::Empty(void)                     // test if the string is empty
 {
 	if(length_==0)
@@ -99,11 +95,7 @@ bool String::Empty(void)                     // test if the string is empty
 	}
 }
 
-//--------------------------------------------------------------------------
-size_t String::capacity(void)             // return the string capacity
-{
-	return capacity_;
-}
+
 //--------------------------------------------------------------------------
 void String::reserve(size_t n)         // increase the string capacity if n is greater than the current capacity
 {
@@ -137,6 +129,31 @@ String& String::operator= (const char* s)       // affect a new value to data
 	length_ = i;
 	return *this;
 }
+
+
+void String::resize(int n, char c)
+{
+  int i;
+  if(n<length_)
+    {
+      for(i=n;i<length_;i++)
+	{
+	  data[i]=NULL;
+	}
+    }
+    
+    else if(n>length_)
+    {
+      for(i=length_;i<n;i++)
+	{
+	  data[i]='c';
+	}
+    }
+  length_ = n;
+}
+
+
+
 // ===========================================================================
 //                                Protected Methods
 // ===========================================================================
@@ -144,3 +161,29 @@ String& String::operator= (const char* s)       // affect a new value to data
 // ===========================================================================
 //                               Non inline accessors
 // ===========================================================================
+
+size_t String::length() const
+{
+  return length_;
+}
+
+size_t String::size() const
+{
+  return length_;
+}
+
+const  char* String::c_str(void) const   
+ {
+   return data;
+ }
+
+size_t String::capacity(void)             // return the string capacity
+{
+	return capacity_;
+}
+
+
+const size_t String::max_size(void)
+{
+  return MAX_SIZE;
+}
