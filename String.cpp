@@ -10,7 +10,7 @@
 // ===========================================================================
 //                                   Libraries
 // ===========================================================================
-
+#include <string.h>
 
 
 // ===========================================================================
@@ -37,15 +37,11 @@ const size_t String::MAX_SIZE = 50;
 // ===========================================================================
 String::String(void)
 {
-  capacity_ = 20;
-  length_ = 4;
+  capacity_ = 4;
+  length_ = 0;
   data = new char[capacity_];
-  data[0]= 't';
-  data[1]='e';
-  data[2]='s';
-  data[3]='t';
 }
-
+//--------------------------------------------------------------------------
 String::String(const String &s)
 {
   
@@ -58,7 +54,7 @@ String::String(const String &s)
   length_ = s.length_;
   capacity_ = s.capacity_;
 }
-
+//--------------------------------------------------------------------------
 String::String(const char * s)
 {
   capacity_ = 20;
@@ -90,7 +86,7 @@ size_t String::length() const
 {
   return length_;
 }
-
+//--------------------------------------------------------------------------
 bool String::Empty(void)                     // test if the string is empty
 {
 	if(length_==0)
@@ -103,26 +99,43 @@ bool String::Empty(void)                     // test if the string is empty
 	}
 }
 
-
+//--------------------------------------------------------------------------
 size_t String::capacity(void)             // return the string capacity
 {
 	return capacity_;
 }
-
+//--------------------------------------------------------------------------
 void String::reserve(size_t n)         // increase the string capacity if n is greater than the current capacity
 {
 	int i;
 	if(capacity_<n)
 	{
-		char* str = new char[n];
+		char* str = new char[capacity_+n];
 		for(i=0;i<length_;i++)
 		{
 			str[i]=data[i];
 		}
 		delete data;
 		data=str;
-		capacity_=n;		
+		capacity_+=n;		
 	}
+}
+//--------------------------------------------------------------------------
+String& String::operator= (const char* s)       // affect a new value to data
+{
+	int i=0;
+	while(s[i]!='\0')          // '\0' better than NULL
+	{
+		i++;
+	}
+	// i = size of s
+	if (capacity_<i)
+	{
+		this->reserve(i);
+	}
+	memcpy(this->data, s, i);
+	length_ = i;
+	return *this;
 }
 // ===========================================================================
 //                                Protected Methods
