@@ -143,7 +143,7 @@ void String::resize(int n, char c)
     {
       for(i=n;i<length_;i++)
 	{
-	  data[i]=NULL;
+	  data[i]='\0';
 	}
     }
     
@@ -157,7 +157,10 @@ void String::resize(int n, char c)
   length_ = n;
 }
 
-
+const char& String::at(int p)
+{
+  return data[p];
+}
 
 // ===========================================================================
 //                                Protected Methods
