@@ -83,6 +83,35 @@ String::~String(void)
 }
 
 // ===========================================================================
+//                               Non inline accessors
+// ===========================================================================
+
+size_t String::length() const           // return the string length
+{
+  return length_;
+}
+//--------------------------------------------------------------------------
+size_t String::size() const              // return the string size
+{
+  return length_;
+}
+//--------------------------------------------------------------------------
+const  char* String::c_str(void) const    // return the string data
+ {
+   return data;
+ }
+//--------------------------------------------------------------------------
+size_t String::capacity(void)             // return the string capacity
+{
+	return capacity_;
+}
+//--------------------------------------------------------------------------
+const size_t String::max_size(void)          // return the string MAX_SIZE
+{
+  return MAX_SIZE;
+}
+
+// ===========================================================================
 //                                 Public Methods
 // ===========================================================================
 
@@ -135,8 +164,8 @@ String& String::operator= (const char* s)       // affect a new value to data
 	return *this;
 }
 
-
-void String::resize(int n, char c)
+//--------------------------------------------------------------------------
+void String::resize(int n, char c)           //resize the string
 {
   int i;
   if(n<length_)
@@ -156,39 +185,22 @@ void String::resize(int n, char c)
     }
   length_ = n;
 }
-
-
+//--------------------------------------------------------------------------
+String String::operator +(const String& str)   // concatenates 2 strings
+{
+	int n=this->length_;
+	this->reserve(str.length_);
+	this->length_ += str.length_;
+	this->capacity_ += str.capacity_;
+	int i;
+	for(i=0;i<str.length_;i++)
+	{
+		this->data[n+i]=str.data[i];
+	}
+	return *this;
+}
 
 // ===========================================================================
 //                                Protected Methods
 // ===========================================================================
 
-// ===========================================================================
-//                               Non inline accessors
-// ===========================================================================
-
-size_t String::length() const
-{
-  return length_;
-}
-
-size_t String::size() const
-{
-  return length_;
-}
-
-const  char* String::c_str(void) const   
- {
-   return data;
- }
-
-size_t String::capacity(void)             // return the string capacity
-{
-	return capacity_;
-}
-
-
-const size_t String::max_size(void)
-{
-  return MAX_SIZE;
-}
