@@ -30,7 +30,7 @@
 // ===========================================================================
 //                         Definition of static attributes
 // ===========================================================================
-const int String::MAX_SIZE = 50;
+const size_t String::MAX_SIZE = 50;
 
 // ===========================================================================
 //                                  Constructors
@@ -96,6 +96,11 @@ bool String::Empty(void)                     // test if the string is empty
 	{
 		return false;
 	}
+}
+
+size_t String::capacity(void)             // return the string capacity
+{
+	return capacity_;
 }
 // ===========================================================================
 //                                Protected Methods

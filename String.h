@@ -70,6 +70,7 @@ class String
     //                              Public Methods
     // =======================================================================
 	bool Empty(void); 
+	size_t capacity(void);
 
     // =======================================================================
     //                             Public Attributes
@@ -85,9 +86,9 @@ class String
     //                             Protected Attributes
     // =======================================================================
     char * data;
-    int length_;
-    int capacity_;
-    static const int MAX_SIZE;
+    size_t length_;
+    size_t capacity_;
+    static const size_t MAX_SIZE;
 };
 
 
