@@ -192,12 +192,28 @@ String String::operator +(const String& str)   // concatenates 2 strings
 //----------------------------------------------------------------------------
 void String::clear()
 {
-  data = "\0";
+  int i;
+  for(i=0;i<length_;i++)
+    {
+      data[i] = '\0';
+    }
   length_= 0;
 }
 const char& String::at(int p)
 {
   return data[p];
+}
+
+String& String::operator= (char c)
+{
+  int i;
+  for(i=0;i<length_;i++)
+    {
+      data[i] = '\0';
+    }
+  this->data[0]=c;
+  length_= 1;
+  return *this;
 }
 
 

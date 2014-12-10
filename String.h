@@ -72,7 +72,8 @@ class String
     //                                Operators
     // =======================================================================
 	String& operator= (const char* s);
-	String operator +(const String& str);
+	String operator+ (const String& str);
+	String& operator= (char c);
     // =======================================================================
     //                              Public Methods
     // =======================================================================

@@ -168,13 +168,17 @@ printf("%d\n",String::max_size());
 // Test of the clear method
 //---------------------------------------------------------------------------
   s1.clear();
-  printf("%c %d %d" , s1.data[5], s1.length_, s1.capacity_);
-  
-  
+  printf("%c\n %d\n %d\n" , s1.data[0], s1.length_, s1.capacity_);
+
+//---------------------------------------------------------------------------
+// Test of the operator= (char)
+//---------------------------------------------------------------------------
+  s2 = 'c';
+  printf("%c\n %c\n %d\n",s2.data[0],s2.data[1],s2.length());
+
 
   return 0;
 }
-
 
 
 
