@@ -193,7 +193,7 @@ int main(int argc, char* argv[])
 
   
 //--------------------------------------------------------------------------
-// test of operator + method
+// test of operator+ (String)
 //--------------------------------------------------------------------------
 
   printf("\n");
@@ -223,7 +223,19 @@ int main(int argc, char* argv[])
 
   s2 = 'c';
   printf("%c\n %c\n %d\n",s2.data[0],s2.data[1],s2.length());
-
+  
+//---------------------------------------------------------------------------
+// Test of the operator+ (char*)
+//---------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the operator+ (char*)\n");
+  
+  String s4 = s2+"coucou";
+  for(i=0;i<s4.length_;i++)
+    {
+      printf("%c",s4.data[i]);
+    }
+  printf("\n");
 
   return 0;
 }
