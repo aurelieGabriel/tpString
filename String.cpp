@@ -54,13 +54,14 @@ String::String(const String &s)
 //--------------------------------------------------------------------------
 String::String(const char * s)
 {
-  capacity_ = 20;
+  
   int i=0,l=0;
   while(s[i] != '\0')
     {
       l++;
       i++;
     }
+  capacity_ =l+10;  //Initialization of capacity_ so that it's greater than length_
   data = new char[capacity_];
   memcpy(data,s,l);
   length_ = l;
