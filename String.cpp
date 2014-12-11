@@ -30,7 +30,7 @@
 // ===========================================================================
 //                         Definition of static attributes
 // ===========================================================================
-const size_t String::MAX_SIZE = 50;
+const size_t String::MAX_SIZE = 100;
 
 // ===========================================================================
 //                                  Constructors
@@ -190,16 +190,15 @@ void String::resize(int n, char c)           //resize the string
 }
 
 //--------------------------------------------------------------------------
-String String::operator +(const String& str)   // concatenates 2 strings
+String String::operator+ (const String& rhs)   // concatenates 2 strings
 {
 	int n=this->length_;
-	this->reserve(str.length_);
-	this->length_ += str.length_;
-	this->capacity_ += str.capacity_;
+	this->reserve(rhs.length_+this->length_+10);
+	this->length_ += rhs.length_;
 	int i;
-	for(i=0;i<str.length_;i++)
+	for(i=0;i<rhs.length_;i++)
 	{
-		this->data[n+i]=str.data[i];
+		this->data[n+i]=rhs.data[i];
 	}
 	return *this;
 }
@@ -258,7 +257,22 @@ String& String::operator= (const String& str)
 
 
 
-// ===========================================================================
-//                                Protected Methods
-// ===========================================================================
+String String::operator+ (const char*   rhs)
+{
+  int l=0, i=0;
+  while(rhs[i]!='\0')
+    {
+      l++;
+      i++;
+    }
+  if(this->length_+l>capacity_){ reserve(length_+l+10); }
+  for(i=this->length_;i<l+this->length_;i++)
+    {
+     
+     this->data[i]=rhs[i-length_];
 
+    }
+
+  length_ +=l;
+  return *this;
+}

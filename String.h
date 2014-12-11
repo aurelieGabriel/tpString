@@ -72,7 +72,6 @@ class String
     //                                Operators
     // =======================================================================
 	String& operator= (const char* s);
-	String operator+ (const String& str);
 	String& operator= (char c);
         String& operator= (const String& str);
     
@@ -85,7 +84,8 @@ class String
 	void clear();
 	void resize(int n, char c);
 	const char& at(int p);
-	
+	String operator+ (const char*   rhs);
+	String operator+ (const String& rhs);
 
     // =======================================================================
     //                             Public Attributes
@@ -118,6 +118,8 @@ class String
 // ===========================================================================
 //                             Operators' definitions
 // ===========================================================================
+
+
 
 // ===========================================================================
 //                          Inline functions' definition
