@@ -26,12 +26,6 @@
 // ===========================================================================
 
 
-
-
-
-
-
-
 // ===========================================================================
 //                                   The Main
 // ===========================================================================
@@ -42,50 +36,79 @@ int main(int argc, char* argv[])
 //test for the copy constructor
 //--------------------------------------------------------------------------
 
-  String s1; 
+  printf("Test of the copy constructor\n");
+
+  String s1;
   String s2= String(s1);
  
   int i;
   for(i=0; i<4; i++)
     {
-    printf("%c ", s2.data[i]);
+    printf("! %c", s2.data[i]);
     }
+  printf("%d %d",s2.length_,s2.capacity_);
   printf("\n");
 
 //--------------------------------------------------------------------------
 // Test of the constructor with c_String
 //--------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the constructor with c_String\n");
+
+  s1.data[0]='t';
+  s1.data[1]='e';
+  s1.data[2]='s';
+  s1.data[3]='t';
+  s1.data[4]='o';
+  s1.data[5]='o';
+  s1.data[6]='o';
+  s1.length_ = 7;
+  //pb on modifie data mais pas length...
+
   String s3 = String(s1.data);
-  printf("%d %c\n",s3.length_,s3.data[0]);
+  for(i=0; i<s3.capacity_; i++)
+    {
+    printf("%c", s3.data[i]);
+    }
+  printf("%d %d \n",s3.length_,s3.capacity_);
 
 //--------------------------------------------------------------------------
-// Test of the c_str methode
+// Test of the c_str method
 //--------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the c_str method\n");
+
   const char * c1;
   c1 =  s1.c_str();
-  int j;
-  for(j=0; j<4; j++)
+  for(i=0; i<4; i++)
     {
-    printf("%c ", c1[j]);
+    printf("%c ", c1[i]);
     }
   printf("\n");
 
 //--------------------------------------------------------------------------
 // Test of the length method
 //--------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the length method\n");
+
   printf("%d\n",s3.length());
 
 
 //--------------------------------------------------------------------------
 // Test of the size method
 //--------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the size method\n");
 
   printf("%d\n",s3.size());
 
 //--------------------------------------------------------------------------
 //test method Empty
 //--------------------------------------------------------------------------
-  
+  printf("\n");
+  printf("Test of the Empty method\n");
+
   bool t=s1.Empty();
   printf("%d\n",t);
 
@@ -93,41 +116,49 @@ int main(int argc, char* argv[])
 //--------------------------------------------------------------------------
 //test method capacity
 //--------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the capacity method\n");
+
   printf("%d\n",s1.capacity());
 
 //--------------------------------------------------------------------------
 //test method reserve
 //--------------------------------------------------------------------------
-s1.reserve(25);
-printf("%d\n",s1.capacity());
+  printf("\n");
+  printf("Test of the reverse method\n"); 
 
-/*
-for(i=0;i<s1.capacity_;i++)
-{
-	printf("%c\n",s1.data[i]);
-}
-*/
+  s1.reserve(25);
+  printf("%d %d\n",s1.capacity(), s1.length());
 
 //--------------------------------------------------------------------------
-//test method operator=
+//test method operator= 
 //--------------------------------------------------------------------------
-s1="blabla";
-for(i=0;i<s1.capacity_;i++)
-{
-	printf("%c\n",s1.data[i]);
-}
- 
+  printf("\n");
+  printf("Test of the operator = \n");
+
+  s1="blabla";
+  for(i=0;i<s1.capacity_;i++)
+    {
+      printf("%c",s1.data[i]);
+    }
+  printf("%d %d\n",s1.capacity(), s1.length());
 
 
 //--------------------------------------------------------------------------
 // test of the max_size method
 //--------------------------------------------------------------------------
-printf("%d\n",String::max_size());
+  printf("\n");
+  printf("Test of the max_size method\n");
+
+  printf("%d\n",String::max_size());
 
 
 //---------------------------------------------------------------------------
 // Test of the resize method
 //---------------------------------------------------------------------------
+
+  printf("\n");
+  printf("Test of the resize method\n");
 
 // with n<length
   s1.resize(2,'c');
@@ -150,6 +181,9 @@ printf("%d\n",String::max_size());
 //--------------------------------------------------------------------------
 // Test for the at method
 //--------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the at method\n");
+
   printf("%c\n",s1.at(0));
  
 
@@ -157,22 +191,31 @@ printf("%d\n",String::max_size());
 //--------------------------------------------------------------------------
 // test of operator + method
 //--------------------------------------------------------------------------
- s1="blabla";
- s2="hello";
- printf("%s\n",(s1+s2).data);
- 
- 
+
+  printf("\n");
+  printf("Test of the operator+ method\n");
 
 
+  s1="blabla";
+  s2="hello";
+  printf("%s\n",(s1+s2).data);
+ 
+ 
 //---------------------------------------------------------------------------
 // Test of the clear method
 //---------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the clear method\n"); 
+ 
   s1.clear();
   printf("%c\n %d\n %d\n" , s1.data[0], s1.length_, s1.capacity_);
 
 //---------------------------------------------------------------------------
 // Test of the operator= (char)
 //---------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the operator= (char)\n");
+
   s2 = 'c';
   printf("%c\n %c\n %d\n",s2.data[0],s2.data[1],s2.length());
 

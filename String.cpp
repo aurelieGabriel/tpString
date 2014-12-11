@@ -40,6 +40,7 @@ String::String(void)
   capacity_ = 4;
   length_ = 0;
   data = new char[capacity_];
+
 }
 //--------------------------------------------------------------------------
 String::String(const String &s)
@@ -199,10 +200,13 @@ void String::clear()
     }
   length_= 0;
 }
+
+
 const char& String::at(int p)
 {
   return data[p];
 }
+
 
 String& String::operator= (char c)
 {
@@ -215,6 +219,7 @@ String& String::operator= (char c)
   length_= 1;
   return *this;
 }
+
 
 
 // ===========================================================================

@@ -74,6 +74,7 @@ class String
 	String& operator= (const char* s);
 	String operator+ (const String& str);
 	String& operator= (char c);
+    
     // =======================================================================
     //                              Public Methods
     // =======================================================================
@@ -83,6 +84,7 @@ class String
 	void clear();
 	void resize(int n, char c);
 	const char& at(int p);
+	
 
     // =======================================================================
     //                             Public Attributes
