@@ -63,7 +63,9 @@ int main(int argc, char* argv[])
   s1.data[5]='o';
   s1.data[6]='o';
   s1.length_ = 7;
-  //pb on modifie data mais pas length...
+ 
+  //s1.length_=4;
+ 
 
   String s3 = String(s1.data);
   for(i=0; i<s3.capacity_; i++)
@@ -141,6 +143,7 @@ int main(int argc, char* argv[])
     {
       printf("%c",s1.data[i]);
     }
+  printf("\n");
   printf("%d %d\n",s1.capacity(), s1.length());
 
 
@@ -161,8 +164,9 @@ int main(int argc, char* argv[])
   printf("Test of the resize method\n");
 
 // with n<length
+
   s1.resize(2,'c');
-  printf("%d\n",s1.length());
+  printf("length : %d\n",s1.length());
   for(i=0; i<s1.length(); i++)
     {
       printf("%c", s1.data[i]);
@@ -170,8 +174,9 @@ int main(int argc, char* argv[])
   printf("\n");
 
 // with n>length
+
   s1.resize(10,'c');
-  printf("%d\n",s1.length());
+  printf("length : %d\n",s1.length());
   for(i=0; i<s1.length(); i++)
     {
     printf("%c", s1.data[i]);
@@ -184,8 +189,7 @@ int main(int argc, char* argv[])
   printf("\n");
   printf("Test of the at method\n");
 
-  printf("%c\n",s1.at(0));
- 
+  printf("%c %c\n",s1.at(0), s1.at(1));
 
   
 //--------------------------------------------------------------------------
@@ -199,6 +203,7 @@ int main(int argc, char* argv[])
   s1="blabla";
   s2="hello";
   printf("%s\n",(s1+s2).data);
+  
  
  
 //---------------------------------------------------------------------------

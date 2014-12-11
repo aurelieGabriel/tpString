@@ -145,6 +145,7 @@ String& String::operator= (const char* s)       // affect a new value to data
 	{
 		this->reserve(i);
 	}
+        this->clear();
 	memcpy(this->data, s, i);
 	length_ = i;
 	return *this;
