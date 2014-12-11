@@ -62,6 +62,11 @@ String::String(const char * s)
       i++;
     }
   capacity_ =l+10;  //Initialization of capacity_ so that it's greater than length_
+  if(capacity_>MAX_SIZE)
+    {
+      printf("Warning : your capacity is greater than the MAX_SIZE, try with a char * which size < %d\n", MAX_SIZE);
+      exit(EXIT_FAILURE);
+    }
   data = new char[capacity_];
   memcpy(data,s,l);
   length_ = l;
@@ -123,6 +128,11 @@ bool String::Empty(void)                     // test if the string is empty
 //--------------------------------------------------------------------------
 void String::reserve(size_t n)         // increase the string capacity if n is greater than the current capacity
 {
+  if(capacity_>MAX_SIZE)
+    {
+      printf("Warning : your capacity is greater than the MAX_SIZE, try with a number < %d \n", MAX_SIZE);
+      exit(EXIT_FAILURE);
+    }
 	int i;
 	if(capacity_<n)
 	{
@@ -145,7 +155,7 @@ String& String::operator= (const char* s)       // affect a new value to data
 	// i = size of s
 	if (capacity_<i)
 	{
-		this->reserve(i);
+		this->reserve(i+10);   //Modification of capacity_ so that it's greater than i
 	}
         this->clear();
 	memcpy(this->data, s, i);
@@ -157,6 +167,10 @@ String& String::operator= (const char* s)       // affect a new value to data
 void String::resize(int n, char c)           //resize the string
 {
   int i;
+  if(n>capacity_)
+    {
+      reserve(n+10);       //Modification of capacity_ so that it's greater than n
+    }
   if(n<length_)
     {
       for(i=n;i<length_;i++)
@@ -207,6 +221,11 @@ void String::clear()
 
 const char& String::at(int p)
 {
+  if( (p<0) || (p>length_) )
+    {
+      printf("out of range, try with a number between 0 and length = %d \n",length_);
+      exit(EXIT_FAILURE);
+    }
   return data[p];
 }
 

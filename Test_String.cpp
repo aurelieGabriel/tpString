@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
   printf("\n");
   printf("Test of the reverse method\n"); 
 
-  s1.reserve(25);
+  s1.reserve(40);
   printf("%d %d\n",s1.capacity(), s1.length());
 
 //--------------------------------------------------------------------------
@@ -189,7 +189,7 @@ int main(int argc, char* argv[])
   printf("\n");
   printf("Test of the at method\n");
 
-  printf("%c %c\n",s1.at(0), s1.at(1));
+  printf("%c %c\n",s1.at(0), s1.at(10));
 
   
 //--------------------------------------------------------------------------
