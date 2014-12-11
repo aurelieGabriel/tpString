@@ -224,6 +224,41 @@ int main(int argc, char* argv[])
   s2 = 'c';
   printf("%c\n %c\n %d\n",s2.data[0],s2.data[1],s2.length());
 
+//---------------------------------------------------------------------------
+// Test of the operator= (const String& str)
+//---------------------------------------------------------------------------
+  printf("\n");
+  printf("Test de l'opérateur = avec string\n");
+
+  printf("cas où s1.length_ > s2.length \n");
+
+  s1="blabla";
+  printf("length s1: %d capacity s1: %d\n",s1.length(), s1.capacity());
+  printf("length s2: %d capacity s2: %d\n",s2.length(), s2.capacity());
+  s2 = s1; 
+  printf("length s2: %d capacity s2: %d\n",s2.length(), s2.capacity());
+  for(i=0; i<s2.capacity_; i++)
+    {
+      printf("%c", s2.data[i]);
+    }
+  printf("\n");
+
+
+  printf("cas où s1.length_ < s2.length \n");
+ 
+  s1 = "bla";
+  s2 = "blabla";
+  printf("length s1: %d capacity s1: %d\n",s1.length(), s1.capacity());
+  printf("length s2: %d capacity s2: %d\n",s2.length(), s2.capacity());
+
+  s2 = s1; 
+  printf("length s2: %d capacity s2: %d\n",s2.length(), s2.capacity());
+  for(i=0; i<s2.capacity_; i++)
+    {
+      printf("%c", s2.data[i]);
+    }
+  printf("\n");
+
 
   return 0;
 }

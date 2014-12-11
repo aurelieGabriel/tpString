@@ -241,6 +241,20 @@ String& String::operator= (char c)
   length_= 1;
   return *this;
 }
+String& String::operator= (const String& str)
+{
+ 
+  delete [] data;
+  data  = new char[str.capacity_];
+  /*
+  data = str.data;
+  length_ =str.length_;
+  */
+  length_=str.length_;
+  memcpy(data, str.data, str.length_);
+ 
+  return *this;
+}
 
 
 

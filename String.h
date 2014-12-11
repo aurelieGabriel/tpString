@@ -74,6 +74,7 @@ class String
 	String& operator= (const char* s);
 	String operator+ (const String& str);
 	String& operator= (char c);
+        String& operator= (const String& str);
     
     // =======================================================================
     //                              Public Methods
