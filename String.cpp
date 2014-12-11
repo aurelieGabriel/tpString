@@ -125,12 +125,13 @@ void String::reserve(size_t n)         // increase the string capacity if n is g
 	int i;
 	if(capacity_<n)
 	{
-		char* str = new char[capacity_+n];
+		char* str = new char[n];
 		memcpy(str,data,length_);
 		delete data;
 		data=str;
-		capacity_+=n;		
+		capacity_=n;		
 	}
+
 }
 //--------------------------------------------------------------------------
 String& String::operator= (const char* s)       // affect a new value to data
