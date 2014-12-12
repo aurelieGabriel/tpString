@@ -216,7 +216,7 @@ void String::clear()                // Clear the data of the String, data become
 }
 
 //----------------------------------------------------------------------------
-const char& String::at(int p)       // gives the element at the pth place in the string
+const char& String::at(int p) const      // gives the element at the pth place in the string
 {
   if( (p<0) || (p>length_) )
     {
@@ -274,7 +274,7 @@ String String::operator+ (const char*   rhs)      // concatenates data with a ch
 }
 
 //----------------------------------------------------------------------------
-char String::operator[](int p)               // gives the element at the pth place in the string
+char String::operator[](int p) const              // gives the element at the pth place in the string
 {
 	if(p<0 || p>length_)
 	{
@@ -282,5 +282,15 @@ char String::operator[](int p)               // gives the element at the pth pla
 	  exit(EXIT_FAILURE);
 	}
 	return this->data[p];
+
+}
+
+String String::operator+(char rhs)
+{
+
+  if(this->length_+1>capacity_){ reserve(length_+1+10); }
+  this->data[length_]= rhs;
+  length_++;
+  return *this;
 
 }

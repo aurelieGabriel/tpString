@@ -62,7 +62,7 @@ class String
     size_t length() const;                    // return the string length
     static const size_t max_size(void);       // return the string MAX_SIZE
     size_t size() const;                      // return the string size
-	size_t capacity(void);                    // return the string capacity
+    size_t capacity(void);                    // return the string capacity
 
 
     // =======================================================================
@@ -72,21 +72,23 @@ class String
     // =======================================================================
     //                                Operators
     // =======================================================================
-	String& operator= (const char* s);         // affects a new char* to data
-	String& operator= (char c);                // affects a new char to data
+    String& operator= (const char* s);         // affects a new char* to data
+    String& operator= (char c);                // affects a new char to data
     String& operator= (const String& str);     // affects a new value to the String
+    String operator+ (const char*   rhs);      // concatenates data with a character
+    String operator+ (const String& rhs);      // concatenates 2 strings
+    String operator+ (char rhs);               // concatenates a string and a character
+    char operator[] (int p) const;             // gives the element at the pth place in the string
     
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-	bool Empty(void);                          // test if the string is empty
-	void reserve(size_t n);                    // increase the string capacity if n is greater than the current capacity
-	void clear();                              // Clear the data of the String, data becomes Null
-	void resize(int n, char c);                // resize the string
-	const char& at(int p);                     // gives the element at the pth place in the string
-	String operator+ (const char*   rhs);      // concatenates data with a character
-	String operator+ (const String& rhs);      // concatenates 2 strings
-	char operator[] (int p);                   // gives the element at the pth place in the string
+    bool Empty(void);                          // test if the string is empty
+    void reserve(size_t n);                    // increase the string capacity if n is greater than the current capacity
+    void clear();                              // Clear the data of the String, data becomes Null
+    void resize(int n, char c);                // resize the string
+    const char& at(int p) const;               // gives the element at the pth place in the string
+    
 
     // =======================================================================
     //                             Public Attributes
@@ -114,16 +116,6 @@ class String
 
 // ===========================================================================
 //                              Setters' definitions
-// ===========================================================================
-
-// ===========================================================================
-//                             Operators' definitions
-// ===========================================================================
-
-
-
-// ===========================================================================
-//                          Inline functions' definition
 // ===========================================================================
 
 

@@ -190,9 +190,6 @@ int main(int argc, char* argv[])
   printf("Test of the at method\n");
 
   printf("%c\n", s1.at(0));
-  printf("%c\n", s1.at(1));
-  printf("%c\n", s1.at(2));
-  printf("%c\n", s1.at(-1));
   
 //--------------------------------------------------------------------------
 // test of operator+ (String)
@@ -283,6 +280,22 @@ int main(int argc, char* argv[])
   printf("Test of the operator[] method\n");
 
   printf("%c  %c  %c\n",s1[0], s1[1], s1[2]);
+
+//---------------------------------------------------------------------------
+// Test of the operator+ (char)
+//---------------------------------------------------------------------------
+
+  printf("\n");
+  printf("Test of the operator+ (char)\n");
+  
+  s4 = "blabla";
+  s4 = s4 + 'r';
+  for(i=0;i<s4.capacity_;i++)
+    {
+      printf(" %c",s4.data[i]);
+    }
+  printf("capacity : %d ", s4.capacity_);
+  printf("\n");
 
 
   return 0;
