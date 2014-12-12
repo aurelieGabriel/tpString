@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
   printf("%d\n",s3.size());
 
 //--------------------------------------------------------------------------
-//test method Empty
+//test Empty method
 //--------------------------------------------------------------------------
   printf("\n");
   printf("Test of the Empty method\n");
@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
 
  
 //--------------------------------------------------------------------------
-//test method capacity
+//test capacity method
 //--------------------------------------------------------------------------
   printf("\n");
   printf("Test of the capacity method\n");
@@ -124,7 +124,7 @@ int main(int argc, char* argv[])
   printf("%d\n",s1.capacity());
 
 //--------------------------------------------------------------------------
-//test method reserve
+//test reserve method
 //--------------------------------------------------------------------------
   printf("\n");
   printf("Test of the reverse method\n"); 
@@ -133,7 +133,7 @@ int main(int argc, char* argv[])
   printf("%d %d\n",s1.capacity(), s1.length());
 
 //--------------------------------------------------------------------------
-//test method operator= 
+//test operator=  method
 //--------------------------------------------------------------------------
   printf("\n");
   printf("Test of the operator = \n");
@@ -189,8 +189,10 @@ int main(int argc, char* argv[])
   printf("\n");
   printf("Test of the at method\n");
 
-  printf("%c %c\n",s1.at(0), s1.at(10));
-
+  printf("%c\n", s1.at(0));
+  printf("%c\n", s1.at(1));
+  printf("%c\n", s1.at(2));
+  printf("%c\n", s1.at(-1));
   
 //--------------------------------------------------------------------------
 // test of operator+ (String)
@@ -273,6 +275,14 @@ int main(int argc, char* argv[])
       printf("%c",s4.data[i]);
     }
   printf("\n");
+
+//--------------------------------------------------------------------------
+// Test for the operator[] method
+//--------------------------------------------------------------------------
+  printf("\n");
+  printf("Test of the operator[] method\n");
+
+  printf("%c  %c  %c\n",s1[0], s1[1], s1[2]);
 
 
   return 0;

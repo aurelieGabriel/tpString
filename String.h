@@ -45,9 +45,9 @@ class String
     // =======================================================================
     //                               Constructors
     // =======================================================================
-    String(void);
-    String(const String & s);
-    String(const char * s);
+    String(void);                            // constructor by default
+    String(const String & s);                // constructor by copy
+    String(const char * s);                  // constructor with a char* parameter
 
     // =======================================================================
     //                                Destructor
@@ -58,10 +58,11 @@ class String
     //                            Accessors: getters
     // =======================================================================
     
-    const  char* c_str(void) const; 
-    size_t length() const;
-    static const size_t max_size(void);
-    size_t size() const;
+    const  char* c_str(void) const;           // return the string data
+    size_t length() const;                    // return the string length
+    static const size_t max_size(void);       // return the string MAX_SIZE
+    size_t size() const;                      // return the string size
+	size_t capacity(void);                    // return the string capacity
 
 
     // =======================================================================
@@ -71,21 +72,21 @@ class String
     // =======================================================================
     //                                Operators
     // =======================================================================
-	String& operator= (const char* s);
-	String& operator= (char c);
-        String& operator= (const String& str);
+	String& operator= (const char* s);         // affects a new char* to data
+	String& operator= (char c);                // affects a new char to data
+    String& operator= (const String& str);     // affects a new value to the String
     
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-	bool Empty(void); 
-	size_t capacity(void);
-	void reserve(size_t n);
-	void clear();
-	void resize(int n, char c);
-	const char& at(int p);
-	String operator+ (const char*   rhs);
-	String operator+ (const String& rhs);
+	bool Empty(void);                          // test if the string is empty
+	void reserve(size_t n);                    // increase the string capacity if n is greater than the current capacity
+	void clear();                              // Clear the data of the String, data becomes Null
+	void resize(int n, char c);                // resize the string
+	const char& at(int p);                     // gives the element at the pth place in the string
+	String operator+ (const char*   rhs);      // concatenates data with a character
+	String operator+ (const String& rhs);      // concatenates 2 strings
+	char operator[] (int p);                   // gives the element at the pth place in the string
 
     // =======================================================================
     //                             Public Attributes

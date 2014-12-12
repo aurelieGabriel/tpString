@@ -35,7 +35,7 @@ const size_t String::MAX_SIZE = 100;
 // ===========================================================================
 //                                  Constructors
 // ===========================================================================
-String::String(void)
+String::String(void)                      // constructor by default
 {
   capacity_ = 4;
   length_ = 0;
@@ -43,7 +43,7 @@ String::String(void)
 
 }
 //--------------------------------------------------------------------------
-String::String(const String &s)
+String::String(const String &s)           // constructor by copy
 {
   
   data = new char[s.capacity_];
@@ -52,7 +52,7 @@ String::String(const String &s)
   capacity_ = s.capacity_;
 }
 //--------------------------------------------------------------------------
-String::String(const char * s)
+String::String(const char * s)            // constructor with a char* parameter
 {
   
   int i=0,l=0;
@@ -83,22 +83,22 @@ String::~String(void)
 //                               Non inline accessors
 // ===========================================================================
 
-size_t String::length() const           // return the string length
+size_t String::length() const                // return the string length
 {
   return length_;
 }
 //--------------------------------------------------------------------------
-size_t String::size() const              // return the string size
+size_t String::size() const                  // return the string size
 {
   return length_;
 }
 //--------------------------------------------------------------------------
-const  char* String::c_str(void) const    // return the string data
+const  char* String::c_str(void) const       // return the string data
  {
    return data;
  }
 //--------------------------------------------------------------------------
-size_t String::capacity(void)             // return the string capacity
+size_t String::capacity(void)                // return the string capacity
 {
 	return capacity_;
 }
@@ -126,7 +126,7 @@ bool String::Empty(void)                     // test if the string is empty
 
 
 //--------------------------------------------------------------------------
-void String::reserve(size_t n)         // increase the string capacity if n is greater than the current capacity
+void String::reserve(size_t n)              // increase the string capacity if n is greater than the current capacity
 {
   if(capacity_>MAX_SIZE)
     {
@@ -155,7 +155,7 @@ String& String::operator= (const char* s)       // affect a new value to data
 	// i = size of s
 	if (capacity_<i)
 	{
-		this->reserve(i+10);   //Modification of capacity_ so that it's greater than i
+		this->reserve(i+10);   // Modification of capacity_ so that it's greater than i
 	}
         this->clear();
 	memcpy(this->data, s, i);
@@ -164,12 +164,12 @@ String& String::operator= (const char* s)       // affect a new value to data
 }
 
 //--------------------------------------------------------------------------
-void String::resize(int n, char c)           //resize the string
+void String::resize(int n, char c)             // resize the string
 {
   int i;
   if(n>capacity_)
     {
-      reserve(n+10);       //Modification of capacity_ so that it's greater than n
+      reserve(n+10);       // Modification of capacity_ so that it's greater than n
     }
   if(n<length_)
     {
@@ -205,9 +205,7 @@ String String::operator+ (const String& rhs)   // concatenates 2 strings
 
 
 //----------------------------------------------------------------------------
-//Clear the data of the String, data becomes Null
-//----------------------------------------------------------------------------
-void String::clear()
+void String::clear()                // Clear the data of the String, data becomes Null
 {
   int i;
   for(i=0;i<length_;i++)
@@ -217,19 +215,19 @@ void String::clear()
   length_= 0;
 }
 
-
-const char& String::at(int p)
+//----------------------------------------------------------------------------
+const char& String::at(int p)       // gives the element at the pth place in the string
 {
   if( (p<0) || (p>length_) )
     {
-      printf("out of range, try with a number between 0 and length = %d \n",length_);
-      exit(EXIT_FAILURE);
+      printf("out of range, you've tried with %d, please try again with a number between 0 and length = %d \n",p,length_);
+     exit(EXIT_FAILURE);
     }
   return data[p];
 }
 
-
-String& String::operator= (char c)
+//----------------------------------------------------------------------------
+String& String::operator= (char c)   // affects a new char type value to data
 {
   int i;
   for(i=0;i<length_;i++)
@@ -240,15 +238,13 @@ String& String::operator= (char c)
   length_= 1;
   return *this;
 }
-String& String::operator= (const String& str)
+
+//----------------------------------------------------------------------------
+String& String::operator= (const String& str)  // affects a new value to the String
 {
  
   delete [] data;
   data  = new char[str.capacity_];
-  /*
-  data = str.data;
-  length_ =str.length_;
-  */
   length_=str.length_;
   memcpy(data, str.data, str.length_);
  
@@ -256,8 +252,8 @@ String& String::operator= (const String& str)
 }
 
 
-
-String String::operator+ (const char*   rhs)
+//----------------------------------------------------------------------------
+String String::operator+ (const char*   rhs)      // concatenates data with a character
 {
   int l=0, i=0;
   while(rhs[i]!='\0')
@@ -275,4 +271,16 @@ String String::operator+ (const char*   rhs)
 
   length_ +=l;
   return *this;
+}
+
+//----------------------------------------------------------------------------
+char String::operator[](int p)               // gives the element at the pth place in the string
+{
+	if(p<0 || p>length_)
+	{
+      printf("out of range, you've tried with %d, please try again with a number between 0 and length = %d \n",p,length_);
+	  exit(EXIT_FAILURE);
+	}
+	return this->data[p];
+
 }
