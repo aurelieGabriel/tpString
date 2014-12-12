@@ -72,35 +72,66 @@ class String
     // =======================================================================
     //                                Operators
     // =======================================================================
-    String& operator= (const char* s);         // affects a new char* to this->data
-    String& operator= (char c);                // affects a new char to this->data
-    String& operator= (const String& str);     // affects a new String to this
-    String operator+ (const char*   rhs);      // adds a a char * to this->data
-    String operator+ (const String& rhs);      // adds a String to this
-    String operator+ (char rhs);               // adds a character to this->data
-    char operator[] (int p) const;             // gives the element at the p_th place in this->data
     
+    // Affect a new char* to this->data
+    String& operator= (const char* s);    
+
+    // Affect a new char to this->data
+    String& operator= (char c);                
+
+    // Affect a new String to this
+    String& operator= (const String& str);    
+
+    // Add a char * to this->data
+    String operator+ (const char*   rhs);  
+
+    // Add a String to this
+    String operator+ (const String& rhs);    
+
+    // Add a character to this->data
+    String operator+ (char rhs);               
+
+    // Return the element at the p_th position in this->data
+    char operator[] (int p) const;            
+    
+
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    bool Empty(void);                          // tests if the string is empty
-    void reserve(size_t n);                    // increases the string capacity if n is greater than the current capacity
-    void clear();                              // clears this->data setting every character to '\0'
-    void resize(int n, char c);                // resizes the string by increasing to n characters (by adding c) or remove characters
-                                               // if n<length_
-    const char& at(int p) const;               // gives the element at the p_th place in this->data
+    
+    // Test if the string is empty
+    bool Empty(void);             
+
+    // Increase the String capacity if n is greater than the current capacity
+    void reserve(size_t n);              
+
+    // clear this->data by setting every character to '\0'
+    void clear();   
+
+    // Resize the String by increasing to n characters (by adding c) or removing characters if n<length_
+    void resize(int n, char c);            
+
+    // Return the element at the p_th position in this->data
+    const char& at(int p) const;               
     
 
-
   private :
+    // ===========================================================================
+    //                                 Private Methods
+    // ===========================================================================
+    
+    // Calculate the size of a c_String
+    int c_String_size(const char * s);
 
     // =======================================================================
-    //                             Protected Attributes
+    //                             Private Attributes
     // =======================================================================
     char * data;
     size_t length_;
     size_t capacity_;
     static const size_t MAX_SIZE;
+    
+
 };
 
 
@@ -131,9 +162,6 @@ inline const size_t String::max_size(void)
 {
   return MAX_SIZE;
 }
-// ===========================================================================
-//                              Setters' definitions
-// ===========================================================================
 
 
 
