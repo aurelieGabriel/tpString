@@ -98,7 +98,7 @@ class String
 
 
 
-  public :
+  private :
 
     // =======================================================================
     //                             Protected Attributes

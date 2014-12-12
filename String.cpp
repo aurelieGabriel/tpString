@@ -40,7 +40,7 @@ String::String(void)                      // constructor by default
   capacity_ = 4;
   length_ = 0;
   data = new char[capacity_];
-
+  
 }
 //--------------------------------------------------------------------------
 String::String(const String &s)           // constructor by copy
@@ -131,7 +131,7 @@ void String::reserve(size_t n)              // increase the string capacity if n
 {
   if(n>MAX_SIZE)
     {
-      printf("Warning : you tried to call reserve with a number greater than the MAX_SIZE, please try again with a number < %d \n", MAX_SIZE);
+      printf("Warning : you've tried to call reserve with a number greater than the MAX_SIZE, please try again with a number < %d \n", MAX_SIZE);
       exit(EXIT_FAILURE);
     }
   int i;
@@ -195,7 +195,7 @@ void String::resize(int n, char c)             // resize the string
     {
       for(i=length_;i<n;i++)
 	{
-	  data[i]='c';
+	  data[i]=c;
 	}
     }
   length_ = n;
@@ -204,6 +204,7 @@ void String::resize(int n, char c)             // resize the string
 //--------------------------------------------------------------------------
 String String::operator+ (const String& rhs)   // concatenates 2 strings
 {
+  int n = this->length_;
   if(rhs.length_+this->length_+10>MAX_SIZE)
     {
       printf("Warning : you've tried to increase data and the final length is greater than the MAX_SIZE, please try again so that it's  < %d\n", MAX_SIZE-10);
@@ -234,7 +235,7 @@ void String::clear()                // Clear the data of the String, data become
 //----------------------------------------------------------------------------
 const char& String::at(int p) const      // gives the element at the pth place in the string
 {
-  if( (p<0) || (p>length_) )
+  if( (p<0) || (p>=length_) )
     {
       printf("Warning : out of range, you've tried with %d, please try again with a number between 0 and length = %d \n",p,length_);
       exit(EXIT_FAILURE);
@@ -300,7 +301,7 @@ String String::operator+ (const char*   rhs)      // concatenates data with a ch
 //----------------------------------------------------------------------------
 char String::operator[](int p) const              // gives the element at the pth place in the string
 {
-  if(p<0 || p>length_)
+  if(p<0 || p>=length_)
     {
       printf("out of range, you've tried with %d, please try again with a number between 0 and length = %d \n",p,length_);
       exit(EXIT_FAILURE);
