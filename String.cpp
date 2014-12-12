@@ -64,7 +64,7 @@ String::String(const char * s)            // constructor with a char* parameter
   capacity_ =l+10;  //Initialization of capacity_ so that it's greater than length_
   if(capacity_>MAX_SIZE)
     {
-      printf("Warning : your capacity is greater than the MAX_SIZE, try with a char * which size < %d\n", MAX_SIZE);
+      printf("Warning : you've tried to create a string whith a capacity greater than the MAX_SIZE, please try again with a char * which size is < %d\n", MAX_SIZE);
       exit(EXIT_FAILURE);
     }
   data = new char[capacity_];
@@ -77,6 +77,7 @@ String::String(const char * s)            // constructor with a char* parameter
 // ===========================================================================
 String::~String(void)
 {
+  delete [] data;
 }
 
 // ===========================================================================
@@ -100,7 +101,7 @@ const  char* String::c_str(void) const       // return the string data
 //--------------------------------------------------------------------------
 size_t String::capacity(void)                // return the string capacity
 {
-	return capacity_;
+  return capacity_;
 }
 //--------------------------------------------------------------------------
 const size_t String::max_size(void)          // return the string MAX_SIZE
@@ -114,53 +115,59 @@ const size_t String::max_size(void)          // return the string MAX_SIZE
 
 bool String::Empty(void)                     // test if the string is empty
 {
-	if(length_==0)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+  if(length_==0)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
 }
 
 
 //--------------------------------------------------------------------------
 void String::reserve(size_t n)              // increase the string capacity if n is greater than the current capacity
 {
-  if(capacity_>MAX_SIZE)
+  if(n>MAX_SIZE)
     {
-      printf("Warning : your capacity is greater than the MAX_SIZE, try with a number < %d \n", MAX_SIZE);
+      printf("Warning : you tried to call reserve with a number greater than the MAX_SIZE, please try again with a number < %d \n", MAX_SIZE);
       exit(EXIT_FAILURE);
     }
-	int i;
-	if(capacity_<n)
-	{
-		char* str = new char[n];
-		memcpy(str,data,length_);
-		delete data;
-		data=str;
-		capacity_=n;		
-	}
+  int i;
+  if(capacity_<n)
+    {
+      char* str = new char[n];
+      memcpy(str,data,length_);
+      delete data;
+      data=str;
+      capacity_=n;		
+    }
 
 }
 //--------------------------------------------------------------------------
 String& String::operator= (const char* s)       // affect a new value to data
 {
-	int i=0;
-	while(s[i]!='\0')          // '\0' better than NULL
+  int i=0;    // i = size of s
+  while(s[i]!='\0')         
+    {
+      i++;
+    }
+   
+  if (capacity_<i)
+    {
+      if(i+10>MAX_SIZE)
 	{
-		i++;
+          printf("Warning : you've tried to affect a char* whith a size greater than the MAX_SIZE, please try again with a char * which size is < %d\n", MAX_SIZE-10);
+          exit(EXIT_FAILURE);
 	}
-	// i = size of s
-	if (capacity_<i)
-	{
-		this->reserve(i+10);   // Modification of capacity_ so that it's greater than i
-	}
-        this->clear();
-	memcpy(this->data, s, i);
-	length_ = i;
-	return *this;
+      this->reserve(i+10);   // Modification of capacity_ so that it's greater than i
+
+    }
+  this->clear();
+  memcpy(this->data, s, i);
+  length_ = i;
+  return *this;
 }
 
 //--------------------------------------------------------------------------
@@ -169,6 +176,11 @@ void String::resize(int n, char c)             // resize the string
   int i;
   if(n>capacity_)
     {
+      if(n+10>MAX_SIZE)
+        {
+           printf("Warning : you've tried to call resize with a number greater than the MAX_SIZE, please try again with a number < %d\n", MAX_SIZE-10);
+           exit(EXIT_FAILURE);
+	}
       reserve(n+10);       // Modification of capacity_ so that it's greater than n
     }
   if(n<length_)
@@ -192,15 +204,19 @@ void String::resize(int n, char c)             // resize the string
 //--------------------------------------------------------------------------
 String String::operator+ (const String& rhs)   // concatenates 2 strings
 {
-	int n=this->length_;
-	this->reserve(rhs.length_+this->length_+10);
-	this->length_ += rhs.length_;
-	int i;
-	for(i=0;i<rhs.length_;i++)
-	{
-		this->data[n+i]=rhs.data[i];
-	}
-	return *this;
+  if(rhs.length_+this->length_+10>MAX_SIZE)
+    {
+      printf("Warning : you've tried to increase data and the final length is greater than the MAX_SIZE, please try again so that it's  < %d\n", MAX_SIZE-10);
+      exit(EXIT_FAILURE);
+    }
+  this->reserve(rhs.length_+this->length_+10);
+  this->length_ += rhs.length_;
+  int i;
+  for(i=0;i<rhs.length_;i++)
+    {
+      this->data[n+i]=rhs.data[i];
+    }
+  return *this;
 }
 
 
@@ -220,8 +236,8 @@ const char& String::at(int p) const      // gives the element at the pth place i
 {
   if( (p<0) || (p>length_) )
     {
-      printf("out of range, you've tried with %d, please try again with a number between 0 and length = %d \n",p,length_);
-     exit(EXIT_FAILURE);
+      printf("Warning : out of range, you've tried with %d, please try again with a number between 0 and length = %d \n",p,length_);
+      exit(EXIT_FAILURE);
     }
   return data[p];
 }
@@ -261,7 +277,15 @@ String String::operator+ (const char*   rhs)      // concatenates data with a ch
       l++;
       i++;
     }
-  if(this->length_+l>capacity_){ reserve(length_+l+10); }
+  if(this->length_+l>capacity_)
+    { 
+      if(length_+l+10>MAX_SIZE)
+        {
+          printf("Warning : you've tried to increase data and the final length is greater than the MAX_SIZE, please try again so that it's  < %d\n", MAX_SIZE-10);
+          exit(EXIT_FAILURE);
+        }
+      reserve(length_+l+10);
+    }
   for(i=this->length_;i<l+this->length_;i++)
     {
      
@@ -276,19 +300,27 @@ String String::operator+ (const char*   rhs)      // concatenates data with a ch
 //----------------------------------------------------------------------------
 char String::operator[](int p) const              // gives the element at the pth place in the string
 {
-	if(p<0 || p>length_)
-	{
+  if(p<0 || p>length_)
+    {
       printf("out of range, you've tried with %d, please try again with a number between 0 and length = %d \n",p,length_);
-	  exit(EXIT_FAILURE);
-	}
-	return this->data[p];
+      exit(EXIT_FAILURE);
+    }
+  return this->data[p];
 
 }
 
 String String::operator+(char rhs)
 {
 
-  if(this->length_+1>capacity_){ reserve(length_+1+10); }
+  if(this->length_+1>capacity_)
+    { 
+      if(length_+1+10>MAX_SIZE)
+        {
+          printf("Warning : you've tried to increase data and the final length is greater than the MAX_SIZE, please try again so that it's  < %d\n", MAX_SIZE-10);
+          exit(EXIT_FAILURE);
+        }
+      reserve(length_+1+10); 
+    }
   this->data[length_]= rhs;
   length_++;
   return *this;
