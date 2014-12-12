@@ -35,15 +35,18 @@ const size_t String::MAX_SIZE = 100;
 // ===========================================================================
 //                                  Constructors
 // ===========================================================================
-String::String(void)                      // constructor by default
+
+// Default constructor
+String::String(void)                      
 {
   capacity_ = 4;
   length_ = 0;
   data = new char[capacity_];
   
 }
-//--------------------------------------------------------------------------
-String::String(const String &s)           // constructor by copy
+
+// Copy constructor
+String::String(const String &s)          
 {
   
   data = new char[s.capacity_];
@@ -51,8 +54,9 @@ String::String(const String &s)           // constructor by copy
   length_ = s.length_;
   capacity_ = s.capacity_;
 }
-//--------------------------------------------------------------------------
-String::String(const char * s)            // constructor with a char* parameter
+
+//Constructor with a c_string
+String::String(const char * s)            
 {
   
   int i=0,l=0;
@@ -62,7 +66,7 @@ String::String(const char * s)            // constructor with a char* parameter
       i++;
     }
   capacity_ =l+10;  //Initialization of capacity_ so that it's greater than length_
-  if(capacity_>MAX_SIZE)
+  if(capacity_>MAX_SIZE) // Capacity can't be greater than MAX_SIZE
     {
       printf("Warning : you've tried to create a string whith a capacity greater than the MAX_SIZE, please try again with a char * which size is < %d\n", MAX_SIZE);
       exit(EXIT_FAILURE);
@@ -84,30 +88,7 @@ String::~String(void)
 //                               Non inline accessors
 // ===========================================================================
 
-size_t String::length() const                // return the string length
-{
-  return length_;
-}
-//--------------------------------------------------------------------------
-size_t String::size() const                  // return the string size
-{
-  return length_;
-}
-//--------------------------------------------------------------------------
-const  char* String::c_str(void) const       // return the string data
- {
-   return data;
- }
-//--------------------------------------------------------------------------
-size_t String::capacity(void)                // return the string capacity
-{
-  return capacity_;
-}
-//--------------------------------------------------------------------------
-const size_t String::max_size(void)          // return the string MAX_SIZE
-{
-  return MAX_SIZE;
-}
+
 
 // ===========================================================================
 //                                 Public Methods

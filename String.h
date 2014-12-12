@@ -58,11 +58,11 @@ class String
     //                            Accessors: getters
     // =======================================================================
     
-    const  char* c_str(void) const;           // return the string data
-    size_t length() const;                    // return the string length
-    static const size_t max_size(void);       // return the string MAX_SIZE
-    size_t size() const;                      // return the string size
-    size_t capacity(void);                    // return the string capacity
+    inline const  char* c_str(void) const;          
+    inline size_t length() const;                   
+    inline static const size_t max_size(void);      
+    inline size_t size() const;                      
+    inline size_t capacity(void);                    
 
 
     // =======================================================================
@@ -72,30 +72,24 @@ class String
     // =======================================================================
     //                                Operators
     // =======================================================================
-    String& operator= (const char* s);         // affects a new char* to data
-    String& operator= (char c);                // affects a new char to data
-    String& operator= (const String& str);     // affects a new value to the String
-    String operator+ (const char*   rhs);      // concatenates data with a character
-    String operator+ (const String& rhs);      // concatenates 2 strings
-    String operator+ (char rhs);               // concatenates a string and a character
-    char operator[] (int p) const;             // gives the element at the pth place in the string
+    String& operator= (const char* s);         // affects a new char* to this->data
+    String& operator= (char c);                // affects a new char to this->data
+    String& operator= (const String& str);     // affects a new String to this
+    String operator+ (const char*   rhs);      // adds a a char * to this->data
+    String operator+ (const String& rhs);      // adds a String to this
+    String operator+ (char rhs);               // adds a character to this->data
+    char operator[] (int p) const;             // gives the element at the p_th place in this->data
     
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    bool Empty(void);                          // test if the string is empty
-    void reserve(size_t n);                    // increase the string capacity if n is greater than the current capacity
-    void clear();                              // Clear the data of the String, data becomes Null
-    void resize(int n, char c);                // resize the string
-    const char& at(int p) const;               // gives the element at the pth place in the string
+    bool Empty(void);                          // tests if the string is empty
+    void reserve(size_t n);                    // increases the string capacity if n is greater than the current capacity
+    void clear();                              // clears this->data setting every character to '\0'
+    void resize(int n, char c);                // resizes the string by increasing to n characters (by adding c) or remove characters
+                                               // if n<length_
+    const char& at(int p) const;               // gives the element at the p_th place in this->data
     
-
-    // =======================================================================
-    //                             Public Attributes
-    // =======================================================================
-    
-
-
 
 
   private :
@@ -113,7 +107,30 @@ class String
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
+inline size_t String::length() const                
+{
+  return length_;
+}
 
+inline size_t String::size() const                  
+{
+  return length_;
+}
+
+inline const  char* String::c_str(void) const       
+ {
+   return data;
+ }
+
+inline size_t String::capacity(void)                
+{
+  return capacity_;
+}
+
+inline const size_t String::max_size(void)         
+{
+  return MAX_SIZE;
+}
 // ===========================================================================
 //                              Setters' definitions
 // ===========================================================================
